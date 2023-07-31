@@ -8,6 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
@@ -46,6 +47,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $date = null;
 
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +79,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @see UserInterface
      */
 
+
     public function hasRole($role){
         $return = false;
         foreach ($this->roles as $roleParcours){
@@ -86,6 +89,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
         return $return;
     }
+
 
     public function getRoles(): array
     {

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello {{ app.user.firstname }}{% endblock %}
+
+{% block body %}
+
+
+    <table class="table border border-danger border-3">
+
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Email</th>
+                <th>Firstname</th>
+                <th>Lastname</th>
+                <th>Picture</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td> <img src="{{ asset('uploads/'~user.picture) }}" width="50px" height="50px"></td>
+
+
+                <td>
+                    <a class="btn btn-primary m-2" href="{{ path('app_user_show', {'id': user.id}) }}">show</a>
+                    {% if app.user.hasRole('ROLE_RH') %}
+
+                    <a class="btn btn-secondary m-2" href="{{ path('app_user_edit', {'id': user.id}) }}">edit</a>
+                    {% endif %}
+                </td>
+
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="11">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
