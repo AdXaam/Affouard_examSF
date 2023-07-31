@@ -1,0 +1,14 @@
+{% if app.user %}
+
+    <div class="d-flex justify-content-between p-4 border-bottom border-danger">
+        <p class="h1 d-flex text-light">Examen Symfony</p>
+
+        <div class="col d-flex justify-content-end">
+            {% if app.user.hasRole('ROLE_RH') %}
+                <a class="btn btn-secondary m-2" href="#">Ajouter un utlisateur</a>
+            {% endif %}
+            <a class="btn btn-primary m-2" href="{{ path('app_logout') }}">Se déconnecter</a>
+        </div>
+    </div>
+
+{% endif %}
